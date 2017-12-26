@@ -6,4 +6,13 @@ contract('DemoContract', function(accounts) {
     assert.isTrue(true);
     done();
   });
+
+  it("sets the welcome", function(done) {
+    DemoContract.deployed().then(instance => {
+      return instance.GetMessage.call();
+    }).then(message => {
+      assert.equal(message, "hi");
+      done();
+    });
+  });
 });
