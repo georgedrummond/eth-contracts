@@ -1,13 +1,17 @@
 pragma solidity ^0.4.4;
 
 contract DemoContract {
-  string message = "Hello Demo Contract";
+  string public message;
 
-  function DemoContract() {
-    // constructor
+  function DemoContract() public {
+    message = "Old message";
   }
 
-  function GetMessage() returns (string) {
+  function SetMessage(string _message) public {
+    message = _message;
+  }
+
+  function GetMessage() public view returns (string) {
     return message;
   }
 }

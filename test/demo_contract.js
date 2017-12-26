@@ -11,7 +11,21 @@ contract('DemoContract', function(accounts) {
     DemoContract.deployed().then(instance => {
       return instance.GetMessage.call();
     }).then(message => {
-      assert.equal(message, "hi");
+      assert.equal(message, "Old message");
+      done();
+    });
+  });
+
+  it("allows message override", done => {
+    var contract;
+
+    DemoContract.deployed().then(instance => {
+      contract = instance;
+      return contract.SetMessage("New message");
+    }).then(newMessage => {
+      return contract.GetMessage.call();
+    }).then(message => {
+      assert.equal(message, "New message");
       done();
     });
   });
