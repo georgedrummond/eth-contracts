@@ -1,4 +1,9 @@
 {
+  "scripts": {
+    "compile": "truffle compile",
+    "test": "truffle test",
+    "testrpc": "testrpc"
+  },
   "dependencies": {
     "ethereumjs-testrpc": "^6.0.3",
     "truffle": "^4.0.4"
