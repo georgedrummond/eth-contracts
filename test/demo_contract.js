@@ -1,4 +1,4 @@
-var DemoContract = artifacts.require("DemoContract");
+var DemoContract = artifacts.require("DemoContract.sol");
 
 contract('DemoContract', function(accounts) {
   it("should assert true", function(done) {
