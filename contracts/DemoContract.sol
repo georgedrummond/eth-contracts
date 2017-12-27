@@ -19,11 +19,14 @@ contract DemoContract {
   function DemoContract() public {
     balance = 0;
   }
-    // seller = msg.sender;
-    // balance = 3;
-    // balance = msg.value;
 
   function() public payable {
+    //
+    // Return contract amount if its less than
+    // current balance
+    //
+    require(msg.value > balance);
+
     balance += msg.value;
     EtherDeposited(msg.sender);
   }
