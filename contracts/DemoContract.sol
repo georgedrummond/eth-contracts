@@ -1,54 +1,65 @@
 pragma solidity ^0.4.4;
 
-contract DemoContract {
-  // string public message;
-  // uint public balance;
+contract HodlContract {
+    uint public balance;
 
-  // struct Depositor {
-  //   address delegate;
-  //   uint balance;
-  // }
-  //
-  // Depositor[] public depositors;
+    struct Hodler {
+      address delegate;
+      uint balance;
+    }
 
-  // address public seller;
-  uint public balance;
+    mapping(address => Hodler) public hodlers;
 
-  event EtherDeposited(address sender);
+    event EtherDeposited(address sender);
+    event EtherWithdrawn(address sender);
+    event EtherDisolved(address sender);
 
-  function DemoContract() public {
-    balance = 0;
-  }
+    function HodlContract() public {
+        balance = 0;
+    }
 
-  function() public payable {
-    //
-    // Return contract amount if its less than
-    // current balance
-    //
-    require(msg.value > balance);
+    function() public payable {
+        require(msg.value > balance);
 
-    balance += msg.value;
-    EtherDeposited(msg.sender);
-  }
+        balance += msg.value;
+        EtherDeposited(msg.sender);
+    }
 
-  // function deposit() public payable {
-  //   // balance = msg.value;
-  // }
-
-  // function SetMessage(string _message) public {
-  //   message = _message;
-  // }
-  //
-  // function GetMessage() public view returns (string) {
-  //   return message;
-  // }
-  //
-  // function GetBalance() public view returns(uint) {
-  //   return balance;
-  // }
-
-  // function deposit() public payable {
-  //   require(false);
-  //   // balance += msg.value;
-  // }
+    function disolve() public {
+        msg.sender.transfer(balance);
+        balance = 0;
+    }
 }
+
+// pragma solidity ^0.4.4;
+//
+// contract DemoContract {
+//   // string public message;
+//   // uint public balance;
+//
+//   // struct Depositor {
+//   //   address delegate;
+//   //   uint balance;
+//   // }
+//   //
+//   // Depositor[] public depositors;
+//
+//   uint public balance;
+//
+//   event EtherDeposited(address sender);
+//
+//   function DemoContract() public {
+//     balance = 0;
+//   }
+//
+//   function() public payable {
+//     //
+//     // Return contract amount if its less than
+//     // current balance
+//     //
+//     require(msg.value > balance);
+//
+//     balance += msg.value;
+//     EtherDeposited(msg.sender);
+//   }
+// }
